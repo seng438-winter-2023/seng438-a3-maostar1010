@@ -13,7 +13,7 @@ import org.junit.experimental.runners.Enclosed;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 @RunWith(Enclosed.class)
-public class scaleTests {
+public class ScaleTests {
 	
 	public static class scaleTest_negativeFactorTest{
 		@Test(expected = IllegalArgumentException.class)

@@ -10,8 +10,10 @@ import org.junit.runners.Suite;
 	GetLengthTest.class,
 	GetCentralValueTest.class,
 	ToStringTest.class,
-	scaleTests.class,
-	shiftTests.class
+	ScaleTests.class,
+	ShiftTests.class,
+	CombineTests.class,
+	CombineIgnoringNaNTests.class
 })
 public class RangeTestSuite {
 }
