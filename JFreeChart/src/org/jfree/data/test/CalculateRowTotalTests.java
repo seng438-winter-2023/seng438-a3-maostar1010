@@ -279,11 +279,11 @@ public class CalculateRowTotalTests {
 					{"Row 1: 0.0 Row 2: 1.0", zeroPositive, 1.0},
 					{"Row 1: 0.0 Row 2: -1.0", zeroNegative, -1.0},
 					{"Row 1: 0.0 Row 2: 0.0", zeroZero, 0.0},
-					{"Row 1: null Row 2: 1.0", nullPositive, 0.0},
-					{"Row 1: null Row 2: -1.0", nullNegative, 0.0},
+					{"Row 1: null Row 2: 1.0", nullPositive, 1.0},
+					{"Row 1: null Row 2: -1.0", nullNegative, -1.0},
 					{"Row 1: null Row 2: 0.0", nullZero, 0.0},
-					{"Row 1: 1.0 Row 2: null", positiveNull, 0.0},
-					{"Row 1: -1.0 Row 2: null", negativeNull, 0.0},
+					{"Row 1: 1.0 Row 2: null", positiveNull, 1.0},
+					{"Row 1: -1.0 Row 2: null", negativeNull, -1.0},
 					{"Row 1: 0.0 Row 2: null", zeroNull, 0.0},
 					
 			};
@@ -313,6 +313,31 @@ public class CalculateRowTotalTests {
 			DataUtilities.calculateRowTotal(null, 0);
 		}
 	}
+	
+	public static class CalculateRowTotal_zeroLengthTests {
+		private Mockery mockingContext;
+		private Values2D valuesToTest;
+		
+		@Before
+		public void setUp() throws Exception {
+			this.mockingContext = new Mockery();
+			this.valuesToTest = this.mockingContext.mock(Values2D.class);
+			
+			this.mockingContext.checking(new Expectations () {
+				{
+					allowing(valuesToTest).getColumnCount();
+		            will(returnValue(0));
+				}	
+			});
+		}
+		
+		// This test case tests a value with a column length of 0
+		@Test
+		public void calculateColumnTotal_zeroLengthData() {
+			assertEquals("Zero length test", 0.0, DataUtilities.calculateRowTotal(this.valuesToTest, 0), 0.001d);
+		}
+	}
+	
 	// Test for if an invalid row index is given as input to the method
 	public static class CalculateRowTotal_invalidRowTests {
 		private Mockery mockingContext;

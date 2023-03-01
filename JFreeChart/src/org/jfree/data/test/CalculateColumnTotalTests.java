@@ -309,7 +309,7 @@ public class CalculateColumnTotalTests {
 	}
 	
 	// Parameterized Test
-	public static class CalculateCumulativePercentage_invalidValues2DTests {
+	public static class CalculateColumnTotal_invalidValues2DTests {
 		// This test case tests passing in a null data
 		@Test(expected = InvalidParameterException.class)
 		public void calculateColumnTotal_nullData() {
@@ -317,8 +317,32 @@ public class CalculateColumnTotalTests {
 		}
 	}
 	
+	public static class CalculateColumnTotal_zeroLengthTests {
+		private Mockery mockingContext;
+		private Values2D valuesToTest;
+		
+		@Before
+		public void setUp() throws Exception {
+			this.mockingContext = new Mockery();
+			this.valuesToTest = this.mockingContext.mock(Values2D.class);
+			
+			this.mockingContext.checking(new Expectations () {
+				{
+					allowing(valuesToTest).getRowCount();
+		            will(returnValue(0));
+				}	
+			});
+		}
+		
+		// This test case tests a value with a row length of 0
+		@Test
+		public void calculateColumnTotal_zeroLengthData() {
+			assertEquals("Zero length test", 0.0, DataUtilities.calculateColumnTotal(this.valuesToTest, 0), 0.001d);
+		}
+	}
+	
 	// Boundary Cases
-	public static class CalculateCumulativePercentage_invalidColumnTests {
+	public static class CalculateColumnTotal_invalidColumnTests {
 		private Mockery mockingContext;
 		private Values2D valuesToTest;
 		
