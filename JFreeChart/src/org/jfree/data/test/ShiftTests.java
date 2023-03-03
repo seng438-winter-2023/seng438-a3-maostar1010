@@ -13,7 +13,7 @@ import org.junit.experimental.runners.Enclosed;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 @RunWith(Enclosed.class)
-public class shiftTests {
+public class ShiftTests {
 	
 	public static class shiftTest_2ArgTest{
 		@Test
