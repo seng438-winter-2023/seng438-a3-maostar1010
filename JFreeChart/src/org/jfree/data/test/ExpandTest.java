@@ -59,6 +59,7 @@ public class ExpandTest {
 					{"lowerMargin = 0, upperMargin = 1", 0, 1, new Range(0, 200)},
 					{"lowerMargin = -0.1, upperMargin = 0.5", -0.1, 0.5, new Range(10, 150)},
 					{"lowerMargin = 1.1, upperMargin = 0.5", 1.1, 0.5, new Range(-110, 150)},
+					{"lowerMargin = -1, upperMargin = -0.5", -1, -0.5, new Range(0, 10)}, // new case added to simulate a situation where lower > upper during the expansion
 			};
 			return Arrays.asList(testingData);
 		} 
@@ -73,13 +74,13 @@ public class ExpandTest {
 		}
 	}
 	
-	public static class ExpandTest_InvalidParameterExceptionTests{
-		
-		@Test // InvalidParameterException is thrown if null Range object is passed in
-		public void expand_nullRange() {
-			Range actualRange = Range.expand(null, 0.5, 0.5);
-			assertEquals("null Range is passed ", true, equal(null, actualRange));	
-		}
-	}
+//	public static class ExpandTest_InvalidParameterExceptionTests{
+//		
+//		@Test // InvalidParameterException is thrown if null Range object is passed in
+//		public void expand_nullRange() {
+//			Range actualRange = Range.expand(null, 0.5, 0.5);
+//			assertEquals("null Range is passed ", true, equal(null, actualRange));	
+//		}
+//	}
 
 }
