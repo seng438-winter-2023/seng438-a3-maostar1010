@@ -333,7 +333,7 @@ public class CalculateRowTotalTests {
 		
 		// This test case tests a value with a column length of 0
 		@Test
-		public void calculateColumnTotal_zeroLengthData() {
+		public void calculateRowTotal_zeroLengthData() {
 			assertEquals("Zero length test", 0.0, DataUtilities.calculateRowTotal(this.valuesToTest, 0), 0.001d);
 		}
 	}
